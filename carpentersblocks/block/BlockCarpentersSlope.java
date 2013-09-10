@@ -3,8 +3,9 @@ package carpentersblocks.block;
 import java.util.List;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -18,6 +19,9 @@ import carpentersblocks.CarpentersBlocks;
 import carpentersblocks.data.Slope;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
+import carpentersblocks.util.handler.IconHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCarpentersSlope extends BlockBase
 {
@@ -30,8 +34,18 @@ public class BlockCarpentersSlope extends BlockBase
 		this.setHardness(0.2F);
 		this.setUnlocalizedName("blockCarpentersSlope");
 		this.setCreativeTab(CarpentersBlocks.tabCarpentersBlocks);
-        this.func_111022_d("carpentersblocks:slope/slope");
 	}
+	
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+        this.blockIcon = IconHandler.icon_slope;
+    }
     
     @Override
 	/**
@@ -571,7 +585,7 @@ public class BlockCarpentersSlope extends BlockBase
 	 * Called when the block is placed in the world.
 	 * Uses cardinal direction to adjust metadata if player clicks top or bottom face of block.
 	 */
-	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
 	{
 		int facing = MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
 

@@ -4,9 +4,6 @@ import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
-
-import net.minecraft.util.ResourceLocation;
-
 import carpentersblocks.util.ModLogger;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
@@ -18,12 +15,6 @@ public class BedDesignHandler
 							hasPillow = new boolean[maxNum],
 							hasBlanket = new boolean[maxNum];
 
-	/**
-	 * Bed design cache.
-	 */
-	public static ResourceLocation[] resource_blanket = new ResourceLocation[maxNum];
-
-	
 	/**
 	 * Initializes design detection.
 	 */
@@ -58,10 +49,8 @@ public class BedDesignHandler
     		               	++numDesigns;
                     	}
                 	
-	                	if (zipentry.getName().endsWith("blanket.png")) {
+	                	if (zipentry.getName().endsWith("blanket.png"))
 	                		hasBlanket[numDesign] = true;
-	                		resource_blanket[numDesign] = new ResourceLocation("carpentersblocks", "textures/blocks/bed/design_" + numDesign + "/blanket.png");
-	                	}
 	                    
 	                    if (zipentry.getName().endsWith("pillow.png"))
 	                    	hasPillow[numDesign] = true;

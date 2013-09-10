@@ -4,8 +4,9 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -16,6 +17,7 @@ import carpentersblocks.CarpentersBlocks;
 import carpentersblocks.data.Slab;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
+import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -28,7 +30,17 @@ public class BlockCarpentersBlock extends BlockBase
         this.setHardness(0.2F);
         this.setUnlocalizedName("blockCarpentersBlock");
 		this.setCreativeTab(CarpentersBlocks.tabCarpentersBlocks);
-        this.func_111022_d("carpentersblocks:stairs/stairs");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+		this.blockIcon = IconHandler.icon_stairs;
     }
     
     @Override
@@ -137,7 +149,7 @@ public class BlockCarpentersBlock extends BlockBase
 	/**
 	 * Called when the block is placed in the world.
 	 */
-	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
 	{
 		int data = Slab.BLOCK_FULL;
 		

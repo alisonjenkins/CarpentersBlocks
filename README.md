@@ -11,4 +11,4 @@ This is not my mod or my source code. All rights belong to Mineshopper. I have j
 Branches
 ========
 
-This is the 1.6.2 branch. Please switch to the 1.5.2 branch if you want the 1.5.2 code.
+This is the 1.5.2 branch. Please switch to the 1.6.2 branch if you want the 1.6.2 code.

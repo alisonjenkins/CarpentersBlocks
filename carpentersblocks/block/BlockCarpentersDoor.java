@@ -6,6 +6,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -14,6 +15,7 @@ import carpentersblocks.CarpentersBlocks;
 import carpentersblocks.data.Door;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
+import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -26,7 +28,17 @@ public class BlockCarpentersDoor extends BlockBase
         super(blockID, Material.wood);
 		this.setHardness(0.2F);
 		this.setUnlocalizedName("blockCarpentersDoor");
-        this.func_111022_d("carpentersblocks:general/generic");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+		this.blockIcon = IconHandler.icon_generic;
     }
     
     @Override

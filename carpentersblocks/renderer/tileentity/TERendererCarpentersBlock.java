@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBed;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -60,8 +59,8 @@ public class TERendererCarpentersBlock extends TileEntitySpecialRenderer
 		/*
 		 * Setup rendering environment.
 		 */
-		RenderBlocks renderBlocks = new RenderBlocks();		
-		this.func_110628_a(BedDesignHandler.resource_blanket[design]);
+		RenderBlocks renderBlocks = new RenderBlocks();
+		this.bindTextureByName("/mods/carpentersblocks/textures/blocks/bed/design_" + design + "/blanket.png");
 		Tessellator tessellator = Tessellator.instance;
 		tessellator.setBrightness(Block.dirt.getMixedBrightnessForBlock(TE.worldObj, TE.xCoord, TE.yCoord, TE.zCoord));
 		tessellator.startDrawingQuads();
@@ -141,7 +140,7 @@ public class TERendererCarpentersBlock extends TileEntitySpecialRenderer
 
 		Tessellator.instance.draw();
 		GL11.glEnable(GL11.GL_LIGHTING);
-		this.func_110628_a(TextureMap.field_110575_b);
+		this.bindTextureByName("/terrain.png");		
 	}
 
 }

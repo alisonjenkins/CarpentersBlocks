@@ -4,8 +4,9 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -17,6 +18,7 @@ import carpentersblocks.data.Barrier;
 import carpentersblocks.data.Gate;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
+import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -29,8 +31,18 @@ public class BlockCarpentersBarrier extends BlockBase
 		this.setHardness(0.2F);
 		this.setUnlocalizedName("blockCarpentersBarrier");
 		this.setCreativeTab(CarpentersBlocks.tabCarpentersBlocks);
-        this.func_111022_d("carpentersblocks:general/generic");
 	}
+	
+    @SideOnly(Side.CLIENT)
+    @Override
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+		this.blockIcon = IconHandler.icon_generic;
+    }
 
     @Override
 	/**
@@ -85,7 +97,7 @@ public class BlockCarpentersBarrier extends BlockBase
 	/**
 	 * Called when the block is placed in the world.
 	 */
-	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
 	{
 		/*
 		 * Match gate type with adjacent type or barrier type if possible

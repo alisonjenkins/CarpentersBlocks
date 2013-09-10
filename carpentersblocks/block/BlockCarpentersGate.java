@@ -2,7 +2,8 @@ package carpentersblocks.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -14,6 +15,7 @@ import carpentersblocks.data.Barrier;
 import carpentersblocks.data.Gate;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
+import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -26,8 +28,18 @@ public class BlockCarpentersGate extends BlockBase
 		this.setHardness(0.2F);
 		this.setUnlocalizedName("blockCarpentersGate");
 		this.setCreativeTab(CarpentersBlocks.tabCarpentersBlocks);
-        this.func_111022_d("carpentersblocks:general/generic");
 	}
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+		this.blockIcon = IconHandler.icon_generic;
+    }
 	
     @Override
 	/**
@@ -191,7 +203,7 @@ public class BlockCarpentersGate extends BlockBase
 	/**
 	 * Called when the block is placed in the world.
 	 */
-	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+	public void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
 	{
 		int facing = (MathHelper.floor_double(entityLiving.rotationYaw * 4.0F / 360.0F + 0.5D) & 3) % 4;
 	

@@ -8,9 +8,7 @@ import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EffectRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -578,29 +576,6 @@ public class BlockBase extends BlockContainer
 
 		return false;
 	}
-    
-    /**
-     * Determines if this block is can be destroyed by the specified entities normal behavior.
-     */
-    @Override
-	public boolean canEntityDestroy(World world, int x, int y, int z, Entity entity)
-    {
-		if (!willCoverRecurse(world, x, y, z))
-		{
-			int blockID = BlockProperties.getCoverBlock(world, 6, x, y, z).blockID;
-			
-	        if (entity instanceof EntityWither)
-	        {
-	            return blockID != Block.bedrock.blockID && blockID != Block.endPortal.blockID && blockID != Block.endPortalFrame.blockID;
-	        }
-	        else if (entity instanceof EntityDragon)
-	        {
-	            return canDragonDestroy(world, x, y, z);
-	        }
-		}
-
-        return true;
-    }
 
     @Override
 	/**
@@ -757,7 +732,7 @@ public class BlockBase extends BlockContainer
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack)
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack)
     {
     	TECarpentersBlock TE = (TECarpentersBlock) world.getBlockTileEntity(x, y, z);
     	auxiliaryOnBlockPlacedBy(TE, world, x, y, z, entityLiving, itemStack);
@@ -825,7 +800,7 @@ public class BlockBase extends BlockContainer
 
 	protected void auxiliaryOnBlockClicked(TECarpentersBlock TE, World world, int x, int y, int z, EntityPlayer entityPlayer) {}
 
-	protected void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLivingBase entityLiving, ItemStack itemStack) {}
+	protected void auxiliaryOnBlockPlacedBy(TECarpentersBlock TE, World world, int x, int y, int z, EntityLiving entityLiving, ItemStack itemStack) {}
 
 	protected boolean auxiliaryOnBlockActivated(TECarpentersBlock TE, World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ)
 	{

@@ -5,8 +5,9 @@ import java.util.Random;
 
 import net.minecraft.block.BlockBed;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EnumStatus;
 import net.minecraft.util.ChunkCoordinates;
@@ -18,6 +19,7 @@ import carpentersblocks.data.Bed;
 import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.BlockProperties;
 import carpentersblocks.util.handler.BedDesignHandler;
+import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -30,7 +32,17 @@ public class BlockCarpentersBed extends BlockBase
         this.setHardness(0.4F);
         this.setUnlocalizedName("blockCarpentersBed");
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.625F, 1.0F);
-        this.func_111022_d("carpentersblocks:general/generic");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    /**
+     * When this method is called, your block should register all the icons it needs with the given IconRegister. This
+     * is the only chance you get to register icons.
+     */
+    public void registerIcons(IconRegister iconRegister)
+    {
+		this.blockIcon = IconHandler.icon_generic;
     }
     
     /**
@@ -39,7 +51,7 @@ public class BlockCarpentersBed extends BlockBase
      * perform the sleeping functionality in it's activated event.
      */
     @Override
-	public boolean isBed(World world, int x, int y, int z, EntityLivingBase entityLiving)
+	public boolean isBed(World world, int x, int y, int z, EntityLiving entityLiving)
     {
         return true;
     }

@@ -12,7 +12,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.fluids.IFluidBlock;
+import net.minecraftforge.liquids.ILiquid;
 import carpentersblocks.CarpentersBlocks;
 import carpentersblocks.block.BlockBase;
 import carpentersblocks.data.Slope;
@@ -283,15 +283,15 @@ public class BlockHandlerBase implements ISimpleBlockRenderingHandler
     				block_XZPP = !renderBlocks.blockAccess.isAirBlock(x + 1, y, z + 1) ? Block.blocksList[renderBlocks.blockAccess.getBlockId(x + 1, y, z + 1)] : null,
     				block_XZNN = !renderBlocks.blockAccess.isAirBlock(x - 1, y, z - 1) ? Block.blocksList[renderBlocks.blockAccess.getBlockId(x - 1, y, z - 1)] : null,
     				block_XZPN = !renderBlocks.blockAccess.isAirBlock(x + 1, y, z - 1) ? Block.blocksList[renderBlocks.blockAccess.getBlockId(x + 1, y, z - 1)] : null;
-
-			boolean isFluid_XN = block_XN != null ? (block_XN instanceof IFluidBlock || block_XN instanceof BlockFluid) : false,
-					isFluid_XP = block_XP != null ? (block_XP instanceof IFluidBlock || block_XP instanceof BlockFluid) : false,
-					isFluid_ZN = block_ZN != null ? (block_ZN instanceof IFluidBlock || block_ZN instanceof BlockFluid) : false,
-					isFluid_ZP = block_ZP != null ? (block_ZP instanceof IFluidBlock || block_ZP instanceof BlockFluid) : false,
-					isFluid_XZNP = block_XZNP != null ? (block_XZNP instanceof IFluidBlock || block_XZNP instanceof BlockFluid) : false,
-					isFluid_XZPP = block_XZPP != null ? (block_XZPP instanceof IFluidBlock || block_XZPP instanceof BlockFluid) : false,
-					isFluid_XZNN = block_XZNN != null ? (block_XZNN instanceof IFluidBlock || block_XZNN instanceof BlockFluid) : false,
-					isFluid_XZPN = block_XZPN != null ? (block_XZPN instanceof IFluidBlock || block_XZPN instanceof BlockFluid) : false;
+    		
+			boolean isFluid_XN = block_XN != null ? (block_XN instanceof ILiquid || block_XN instanceof BlockFluid) : false,
+					isFluid_XP = block_XP != null ? (block_XP instanceof ILiquid || block_XP instanceof BlockFluid) : false,
+					isFluid_ZN = block_ZN != null ? (block_ZN instanceof ILiquid || block_ZN instanceof BlockFluid) : false,
+					isFluid_ZP = block_ZP != null ? (block_ZP instanceof ILiquid || block_ZP instanceof BlockFluid) : false,
+					isFluid_XZNP = block_XZNP != null ? (block_XZNP instanceof ILiquid || block_XZNP instanceof BlockFluid) : false,
+					isFluid_XZPP = block_XZPP != null ? (block_XZPP instanceof ILiquid || block_XZPP instanceof BlockFluid) : false,
+					isFluid_XZNN = block_XZNN != null ? (block_XZNN instanceof ILiquid || block_XZNN instanceof BlockFluid) : false,
+					isFluid_XZPN = block_XZPN != null ? (block_XZPN instanceof ILiquid || block_XZPN instanceof BlockFluid) : false;
 
 			boolean isSolid_XN = renderBlocks.blockAccess.isBlockSolidOnSide(x, y, z, ForgeDirection.WEST, true),
 					isSolid_XP = renderBlocks.blockAccess.isBlockSolidOnSide(x, y, z, ForgeDirection.EAST, true),
@@ -857,11 +857,11 @@ public class BlockHandlerBase implements ISimpleBlockRenderingHandler
 			case OverlayHandler.OVERLAY_HAY:
 			{
 				if (side == 1) {
-					icon = Block.field_111038_cB.getBlockTextureFromSide(1);
+					icon = IconHandler.icon_overlay_hay_top; // MC 1.5+ only, use hay block for 1.6+
 				} else if (isSide) {
 					icon = IconHandler.icon_overlay_hay_side;
 				}
-				colorSide(TE, renderBlocks, Block.field_111038_cB, srcBlock, side, x, y, z, icon, lightness);
+				colorSide(TE, renderBlocks, Block.dirt, srcBlock, side, x, y, z, icon, lightness); // MC 1.5+ only, use hay block for 1.6+
 				break;
 			}
 			case OverlayHandler.OVERLAY_WEB:

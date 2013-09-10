@@ -15,6 +15,7 @@ public class IconHandler
 						icon_slope_oblique_pt_low,
 						icon_overlay_fast_grass_side,
 						icon_overlay_hay_side,
+						icon_overlay_hay_top, // MC 1.5+ only
 						icon_overlay_snow_side,
 						icon_overlay_mycelium_side,
 						icon_slope,
@@ -54,6 +55,7 @@ public class IconHandler
 			// Overlay icons
 			icon_overlay_fast_grass_side = event.map.registerIcon("carpentersblocks:overlay/overlay_fast_grass_side");
 			icon_overlay_hay_side = event.map.registerIcon("carpentersblocks:overlay/overlay_hay_side");
+			icon_overlay_hay_top = event.map.registerIcon("carpentersblocks:overlay/overlay_hay_top"); // MC 1.5+ only
 			icon_overlay_snow_side = event.map.registerIcon("carpentersblocks:overlay/overlay_snow_side");
 			icon_overlay_mycelium_side = event.map.registerIcon("carpentersblocks:overlay/overlay_mycelium_side");
 			

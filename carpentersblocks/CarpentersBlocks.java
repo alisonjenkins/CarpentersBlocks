@@ -28,8 +28,9 @@ import carpentersblocks.tileentity.TECarpentersBlock;
 import carpentersblocks.util.CarpentersBlocksTab;
 import carpentersblocks.util.ModLogger;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -39,7 +40,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @Mod(
         modid = "CarpentersBlocks",
         name = "Carpenter's Blocks",
-        version = "v1.84"
+        version = "v1.84",
+        dependencies = "required-after:Forge@[7.7.2.682,)"
 	)
 @NetworkMod(
         clientSideRequired = true,
@@ -174,7 +176,7 @@ public class CarpentersBlocks
     private int baseBlockID = 2401,
     			baseItemID = 5401;
 
-    @EventHandler
+    @PreInit
     public void preInit(FMLPreInitializationEvent event)
     {    	
         Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -252,7 +254,7 @@ public class CarpentersBlocks
     	proxy.registerRenderInformation(event);
     }
 
-    @EventHandler
+    @Init
     public void init(FMLInitializationEvent event)
     {
     	if (enableBarrier) {
