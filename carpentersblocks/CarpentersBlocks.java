@@ -25,6 +25,7 @@ import carpentersblocks.item.ItemCarpentersDoor;
 import carpentersblocks.item.ItemCarpentersHammer;
 import carpentersblocks.proxy.CommonProxy;
 import carpentersblocks.tileentity.TECarpentersBlock;
+import carpentersblocks.tileentity.TECarpentersBlockDaylightSensor;
 import carpentersblocks.util.CarpentersBlocksTab;
 import carpentersblocks.util.ModLogger;
 import cpw.mods.fml.common.Mod;
@@ -40,7 +41,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 @Mod(
         modid = "CarpentersBlocks",
         name = "Carpenter's Blocks",
-        version = "v1.84",
+        version = "v1.84_MODIFIED",
         dependencies = "required-after:Forge@[7.7.2.682,)"
 	)
 @NetworkMod(
@@ -341,6 +342,7 @@ public class CarpentersBlocks
 
     	// String ID reflects old class name for compatibility with versions prior to v1.6
     	GameRegistry.registerTileEntity(TECarpentersBlock.class, "TileEntityCarpentersSlope");
+    	GameRegistry.registerTileEntity(TECarpentersBlockDaylightSensor.class, "TileEntityCarpentersDaylightSensor");
 
     	itemCarpentersHammer = new ItemCarpentersHammer(itemCarpentersHammerID - 256);
 		GameRegistry.registerItem(itemCarpentersHammer, "itemCarpentersHammer");

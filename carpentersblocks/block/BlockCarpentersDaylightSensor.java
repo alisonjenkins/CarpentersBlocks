@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumSkyBlock;
@@ -12,6 +13,7 @@ import net.minecraft.world.World;
 import carpentersblocks.CarpentersBlocks;
 import carpentersblocks.data.DaylightSensor;
 import carpentersblocks.tileentity.TECarpentersBlock;
+import carpentersblocks.tileentity.TECarpentersBlockDaylightSensor;
 import carpentersblocks.util.BlockProperties;
 import carpentersblocks.util.handler.IconHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -146,4 +148,10 @@ public class BlockCarpentersDaylightSensor extends BlockBase
 		return CarpentersBlocks.carpentersDaylightSensorRenderID;
 	}
 
+ 	@Override
+ 	public TileEntity createNewTileEntity(World world)
+ 	{
+ 		return new TECarpentersBlockDaylightSensor();
+ 	}
+    
 }
