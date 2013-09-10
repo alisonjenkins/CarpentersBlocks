@@ -85,18 +85,4 @@ public class TECarpentersBlock extends TileEntity
 			this.worldObj.updateAllLightTypes(this.xCoord, this.yCoord, this.zCoord);
 		}
     }
-    
-    @Override
-    /**
-     * Allows the entity to update its state. Overridden in most subclasses, e.g. the mob spawner uses this to count
-     * ticks and creates a new spawn inside its implementation.
-     */
-	public void updateEntity()
-    {
-    	if (!this.worldObj.isRemote)
-	    	if (this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord) == CarpentersBlocks.blockCarpentersDaylightSensorID)	
-		    	if (this.worldObj.getTotalWorldTime() % 20L == 0L)
-		    		((BlockCarpentersDaylightSensor)this.getBlockType()).updateLightLevel(this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-    }
-    
 }
